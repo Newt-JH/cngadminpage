@@ -53,7 +53,7 @@ export default function SignInSide() {
               alignItems: 'center',
             }}
           >
-            <img src="https://cngtech.s3.ap-northeast-2.amazonaws.com/main/logo.svg" alt="My Image" />
+            {/* <img src="https://cngtech.s3.ap-northeast-2.amazonaws.com/main/logo.svg" alt="My Image" /> */}
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             
             </Avatar>
