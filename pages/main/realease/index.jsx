@@ -22,27 +22,42 @@ export default function Realease() {
 
   const [click, setClick] = useState(false);
   const [error, setError] = useState(false);
+  const [pageRefresh, setPageRefresh] = useState(0);
 
   const getRealeaseCount = async () => {
     try {
       const response = await axios.get('/api/admin/realease/get', {
         params: {
-          // 필요한 경우 쿼리 문자열 매개변수를 추가합니다.
+          // 필요한 경우 매개변수를 추가합니다.
         }
       });
-      await setRows(response.data.data[0]); // await 키워드를 추가합니다.
+      await setRows(response.data.data[0]);
       console.log(response.data.data[0]);
     } catch (error) {
       setError(error);
     }
   }
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (!click) {
       setClick(true);
     } else {
       if (confirm("수정하시겠습니까?")) {
-        // axios 써야함
+          try {
+            const response = await axios.put('/api/admin/realease/put', {
+              // 필요한 경우 매개변수를 추가합니다.
+                releaseCount: rows.releaseCount,
+                usedCount : rows.usedCount,
+                rentalCount : rows.rentalCount,
+            });
+            location.reload();
+            alert('수정 완료되었습니다.');
+            setPageRefresh(count => 
+              count + 1
+            )
+          } catch (error) {
+            setError(error);
+          }
       };
     }      
   };
@@ -57,7 +72,7 @@ export default function Realease() {
 
   useEffect(() => {
     getRealeaseCount();
-  },[])
+  },[pageRefresh])
 
   return (
     <Layout>
