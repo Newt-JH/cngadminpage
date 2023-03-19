@@ -26,6 +26,7 @@ const dbConnet = (query, data) => {
         .join(",")})`;
     }
   
+    console.log("SP : " + formattedQuery);
     return new Promise((resolve, reject) => {
       db.query(formattedQuery, function (err, result) {
         if (err) {

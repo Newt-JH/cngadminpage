@@ -24,7 +24,6 @@ export default function Realease() {
   const [error, setError] = useState(false);
 
   const getRealeaseCount = async () => {
-    console.log("dfjhklasfjklf");
     try {
       const response = await axios.get('/api/admin/realease/get', {
         params: {
