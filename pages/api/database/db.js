@@ -20,11 +20,10 @@ const dbConnet = (query, data) => {
       status: true,
       data: null,
     };
-    if (data) {
+
       formattedQuery = `CALL cngTech.${query}(${data
         .map((d) => `'${d}'`)
-        .join(",")})`;
-    }
+        .join(",")});`;
   
     console.log("SP : " + formattedQuery);
     return new Promise((resolve, reject) => {
