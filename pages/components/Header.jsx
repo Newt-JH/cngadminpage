@@ -46,7 +46,6 @@ const Header = () => {
     }
   };
  
-  console.log(router.pathname);
   return (
     <div className={styles.container}>
       <div className={styles.tabs}>
