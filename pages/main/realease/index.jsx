@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../../components/Layout';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Button, TextField } from '@mui/material';
 import { Box } from '@mui/system';
+import axios from 'axios';
 
 export default function Realease() {
 
@@ -20,6 +21,22 @@ export default function Realease() {
   })
 
   const [click, setClick] = useState(false);
+  const [error, setError] = useState(false);
+
+  const getRealeaseCount = async () => {
+    console.log("dfjhklasfjklf");
+    try {
+      const response = await axios.get('/api/admin/realease/get', {
+        params: {
+          // 필요한 경우 쿼리 문자열 매개변수를 추가합니다.
+        }
+      });
+      await setRows(response.data.data[0]); // await 키워드를 추가합니다.
+      console.log(response.data.data[0]);
+    } catch (error) {
+      setError(error);
+    }
+  }
 
   const handleClick = () => {
     if (!click) {
@@ -37,9 +54,12 @@ export default function Realease() {
       ...prevRows,
       [e.target.id]: Number(e.target.value)
     }));
-    // setInputValue(event.target.value);
   };
-  console.log(rows);
+
+  useEffect(() => {
+    getRealeaseCount();
+  },[])
+
   return (
     <Layout>
       <>
