@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import Layout from '../../components/Layout';
+import Layout from '../../../components/Layout';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
@@ -165,7 +165,7 @@ const Product = () => {
   const router = useRouter();
 
   function InsertPageHandler() {
-    router.push('/main/product/post');
+    router.push('/main/product/detail');
   }
 
   
@@ -318,22 +318,21 @@ const Product = () => {
     </button>
 
     <button
-  style={{
-    padding: "8px",
-    marginLeft: "16px",
-    background: "#000",
-    border: "1px solid #000",
-    color: "#fff", // 하얀색으로 변경
-    cursor: "pointer",
-    fontSize: "16px",
-    fontWeight: "bold",
-    outline: "none"
-  }}
-  onClick={InsertPageHandler}
->
-  신규등록
-</button>
-
+      style={{
+        padding: "8px",
+        marginLeft: "16px",
+        background: "none",
+        border: "1px solid #000",
+        color: "#000",
+        cursor: "pointer",
+        fontSize: "16px",
+        fontWeight: "bold",
+        outline: "none"
+      }}
+      onClick={InsertPageHandler}
+    >
+      신규등록
+    </button>
   </div>
 </div>
 
